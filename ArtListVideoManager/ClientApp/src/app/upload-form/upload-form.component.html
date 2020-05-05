@@ -1,0 +1,20 @@
+<h2>Upload a video</h2>
+<form #uploadForm="ngForm" (ngSubmit)="upload(uploadForm.value)" enctype="multipart/form-data">
+  <div class="form-group">
+    <label>Name</label>
+    <input class="form-control" type="text" (ngModel)="name" name="name" required />
+  </div>
+  <div>
+    <label>Video Format</label>
+    <select class="form-control" [(ngModel)]="videoFormat" name="videoFormat" required>
+      <option *ngFor="let format of videoFormats">{{format}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Video</label>
+    <input class="form-control" type="file" name="file" (change)="selectFile($event)" required />
+  </div>
+  <button type="submit" [disabled]="isUploading" class="btn btn-success">Upload</button>
+  <p><ngb-progressbar type="success" textType="white" [value]="uploadProress" [hidden]="!isUploading"></ngb-progressbar></p>
+
+</form>
